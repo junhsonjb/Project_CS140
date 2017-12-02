@@ -65,11 +65,11 @@ public class Memory {
 	
 	// NEW - sets the value of code at index and also sets programSize to Math.max(programSize, index)
 	void setCode(int index, Instruction value) {
+		programSize = Math.max(programSize, index);
 		this.code[index] = value;
 	}
 	
 	// NEW - sets every position in code to null << CORRECTION << (DOES NOTE set programSize to -1)
-	// It says "DOES NOTE set programSize to -1". I think we will use the setter for programSize and he doesn't want to change it in here.
 	void clearCode() {
 		for (int i = 0; i < code.length; i++) code[i] = null;
 	}
