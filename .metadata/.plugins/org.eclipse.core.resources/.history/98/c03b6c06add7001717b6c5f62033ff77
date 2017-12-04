@@ -1,0 +1,23 @@
+package projectview;
+
+public enum States {
+	
+	AUTO_STEPPING,
+	NOTHING_LOADED,
+	PROGRAM_HALTED,
+	PROGRAM_LOADED_NOT_AUTOSTEPPING;
+	
+	//this is the part after the enum
+	private static final int ASSEMBLE = 0;
+	private static final int CLEAR = 1;
+	private static final int LOAD = 2; 
+	private static final int RELOAD = 3;
+	private static final int RUN = 4;
+	private static final int RUNNING = 5;
+	private static final int STEP = 6;
+	
+	boolean[] states = new boolean[7];
+	
+	public abstract void enter();
+
+}
