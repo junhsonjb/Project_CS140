@@ -1,0 +1,18 @@
+package projectview;
+
+import java.util.Observer;
+
+public class ControlPanel implements Observer {
+	
+	private ViewMediator mediator;
+	private JButton stepButton = new JButton("Step");
+	private JButton clearButton = new JButton("Clear");
+	private JButton runButton = new JButton("Run/Pause");
+	private JButton reloadButton = new JButton("Reload");
+	
+	public ControlPanel(ViewMediator med) {
+		this.mediator = med;
+		mediator.addObserve(this);
+	}
+
+}

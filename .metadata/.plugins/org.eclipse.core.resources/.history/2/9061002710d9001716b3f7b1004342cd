@@ -1,0 +1,9 @@
+package projectview;
+
+import java.util.Observer;
+
+public class ControlPanel implements Observer {
+	
+	
+
+}

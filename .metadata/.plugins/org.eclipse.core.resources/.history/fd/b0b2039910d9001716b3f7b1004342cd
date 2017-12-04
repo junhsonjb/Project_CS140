@@ -1,0 +1,26 @@
+package projectview;
+
+import java.awt.GridLayout;
+import java.util.Observer;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+public class ControlPanel implements Observer {
+	
+	private ViewMediator mediator;
+	private JButton stepButton = new JButton("Step");
+	private JButton clearButton = new JButton("Clear");
+	private JButton runButton = new JButton("Run/Pause");
+	private JButton reloadButton = new JButton("Reload");
+	
+	public ControlPanel(ViewMediator med) {
+		this.mediator = med;
+		mediator.addObserver(this);
+	}
+	
+	public JComponent createControlDisplay() {
+		JPanel panel = new JPanel(new GridLayout(1, 0));
+	}
+
+}
