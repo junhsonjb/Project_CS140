@@ -1,0 +1,4 @@
+#File locations
+#Tue Dec 05 18:09:11 EST 2017
+ExecutableDirectory=/home/jake/Documents/Final_Project/Project_CS140/Final_Project/
+SourceDirectory=/home/jake/Documents/Final_Project/Project_CS140/Final_Project/

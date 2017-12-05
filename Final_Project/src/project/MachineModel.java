@@ -99,6 +99,7 @@ public class MachineModel {
 				String fString = "(" + (flags%8 > 3?"1":"0") + (flags%4 > 1?"1":"0") + ")";
 				throw new IllegalInstructionException("Illegal flags for this instruction: " + fString);
 			}
+			cpu.pc++;
 		});
 		
 		ACTION.put(opcodes.get("STO"), instr -> {
@@ -111,6 +112,7 @@ public class MachineModel {
 				String fString = "(" + (flags%8 > 3?"1":"0") + (flags%4 > 1?"1":"0") + ")";
 				throw new IllegalInstructionException("Illegal flags for this instruction: " + fString);
 			}
+			cpu.pc++;
 		});
 		
 		ACTION.put(opcodes.get("SUB"), instr -> {
@@ -149,7 +151,7 @@ public class MachineModel {
 				if (memory.getData(instr.arg) == 0) { throw new DivideByZeroException("Don't divide by zero"); }
 				cpu.accum /= memory.getData(instr.arg);
 			} else if(flags == 2) { // immediate addressing
-				if (memory.getData(instr.arg) == 0) { throw new DivideByZeroException("Don't divide by zero"); }
+				if (instr.arg == 0) { throw new DivideByZeroException("Don't divide by zero"); }
 				cpu.accum /= instr.arg;
 			} else if(flags == 4) { // indirect addressing
 				if (memory.getData(memory.getData(instr.arg)) == 0) { throw new DivideByZeroException("Don't divide by zero"); }
