@@ -1,0 +1,12 @@
+package projectview;
+
+public class MenuBarBuilder {
+	
+	//fields
+	private JMenuItem assemble = new JMenuItem("Assemble Source...");
+	private JMenuItem load = new JMenuItem("Load File...");
+	private JMenuItem exit = new JMenuItem("Exit");
+	private JMenuItem go = new JMenuItem("Go");
+	private ViewMediator mediator;
+
+}

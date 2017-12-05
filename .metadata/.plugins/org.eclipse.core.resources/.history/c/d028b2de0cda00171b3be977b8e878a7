@@ -1,0 +1,38 @@
+package projectview;
+
+import java.awt.event.KeyEvent;
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+public class MenuBarBuilder {
+	
+	//fields
+	private JMenuItem assemble = new JMenuItem("Assemble Source...");
+	private JMenuItem load = new JMenuItem("Load File...");
+	private JMenuItem exit = new JMenuItem("Exit");
+	private JMenuItem go = new JMenuItem("Go");
+	private ViewMediator mediator;
+	
+	public MenuBarBuilder(ViewMediator view) {
+		mediator = view;
+		view.addObserver((Observer) this); //don't know if I should have casted it, but 
+											//it gives the red lines if I don't
+	}
+	
+	//@Override
+	public void update(Observable arg0, Object arg1) {
+		assemble.setEnabled(mediator.getCurrentState().getAssembleFileActive());
+		load.setEnabled(mediator.getCurrentState().getLoadFileActive());
+		go.setEnabled(mediator.getCurrentState().getStepActive());
+	}
+	
+	JMenu createFileMenu() {
+		JMenu menu = new JMenu("file");
+		menu.setMnemonic(KeyEvent.VK_F);
+		
+	}
+
+}
