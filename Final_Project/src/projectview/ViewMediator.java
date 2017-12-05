@@ -58,6 +58,16 @@ public class ViewMediator extends Observable {
 		return frame;
 	}
 	
+	public void makeReady(String s) {}
+
+	public void execute() {}
+
+	public void assembleFile() {}
+
+	public void loadFile() {}
+
+	public void exit() {}
+	
 	private void createAndShowGUI() {
 		stepControl = new StepControl(this);
 		
