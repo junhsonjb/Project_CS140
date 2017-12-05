@@ -50,11 +50,11 @@ public class ControlPanel implements Observer {
 		return panel;
 	}
 	
-	//this method will be implemented once we've completed ViewMediatorC
 	@Override
-	public void update(Observable arg0, Object arg1) {		
+	public void update(Observable arg0, Object arg1) {
+		runButton.setEnabled(mediator.getCurrentState().getRunPauseActive());
+		stepButton.setEnabled(mediator.getCurrentState().getStepActive());
+		clearButton.setEnabled(mediator.getCurrentState().getClearActive());
+		reloadButton.setEnabled(mediator.getCurrentState().getReloadActive());		
 	}
-	
-	
-
 }

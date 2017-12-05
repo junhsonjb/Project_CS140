@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import project.Assembler;
+import project.FullAssembler;
 import project.Loader;
 import project.MachineModel;
 import project.SimpleAssembler;
@@ -28,7 +29,7 @@ public class FilesMgr {
 	private String executableDir; 
 	private Properties properties = null;
 	private File currentlyExecutingFile;
-	private Assembler assembler = new SimpleAssembler(); 
+	private Assembler assembler = new FullAssembler(); 
 
 	public FilesMgr(ViewMediator view) {
 		mediator = view;
