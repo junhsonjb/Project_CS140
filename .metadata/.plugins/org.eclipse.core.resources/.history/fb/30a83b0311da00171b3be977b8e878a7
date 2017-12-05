@@ -41,19 +41,19 @@ public class MenuBarBuilder implements Observer {
 		assemble.addActionListener(e -> mediator.assembleFile());
 		menu.add(assemble);
 		
-		load.setMnemonic(KeyEvent.VK_L);
-		load.setAccelerator(KeyStroke.getKeyStroke(
+		assemble.setMnemonic(KeyEvent.VK_L);
+		assemble.setAccelerator(KeyStroke.getKeyStroke(
 			KeyEvent.VK_L, ActionEvent.CTRL_MASK));
-		load.addActionListener(e -> mediator.loadFile());
-		menu.add(load);
+		assemble.addActionListener(e -> mediator.loadFile());
+		menu.add(assemble);
 		
 		menu.addSeparator();
 		
-		exit.setMnemonic(KeyEvent.VK_E);
-		exit.setAccelerator(KeyStroke.getKeyStroke(
+		assemble.setMnemonic(KeyEvent.VK_E);
+		assemble.setAccelerator(KeyStroke.getKeyStroke(
 			KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		exit.addActionListener(e -> mediator.exit());
-		menu.add(exit);
+		assemble.addActionListener(e -> mediator.exit());
+		menu.add(assemble);
 		
 		return menu;
 		
@@ -67,7 +67,7 @@ public class MenuBarBuilder implements Observer {
 		go.setAccelerator(KeyStroke.getKeyStroke(
 			KeyEvent.VK_G, ActionEvent.CTRL_MASK));
 		go.addActionListener(e -> mediator.execute());
-		menu.add(go);
+		menu.add(assemble);
 		
 		return menu;
 		
