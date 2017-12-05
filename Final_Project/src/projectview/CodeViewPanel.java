@@ -82,7 +82,7 @@ public class CodeViewPanel implements Observer {
 				instr = model.getCode(i);
 				codeText[i].setText(instr.getText());
 				codeBinHex[i].setText(instr.getBinHex());
-			}	 	
+			}	
 			previousColor = model.getPC();			
 			codeBinHex[previousColor].setBackground(Color.YELLOW);
 			codeText[previousColor].setBackground(Color.YELLOW);

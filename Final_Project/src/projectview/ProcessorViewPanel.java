@@ -41,7 +41,7 @@ public class ProcessorViewPanel implements Observer {
 			new ProcessorViewPanel(mediator, model);
 		JFrame frame = new JFrame("TEST");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(700, 30);
+		frame.setSize(700, 60);
 		frame.setLocationRelativeTo(null);
 		frame.add(panel.createProcessorDisplay());
 		frame.setVisible(true);

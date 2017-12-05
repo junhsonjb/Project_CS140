@@ -2,6 +2,7 @@ package projectview;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
@@ -35,7 +36,7 @@ public class ControlPanel implements Observer {
 		panel.add(clearButton);
 		
 		runButton.setBackground(Color.WHITE);
-		runButton.addActionListener(e -> mediator.toggle());
+		runButton.addActionListener(e -> mediator.toggleAutoStep());
 		panel.add(runButton);
 		
 		reloadButton.setBackground(Color.WHITE);

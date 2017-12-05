@@ -87,7 +87,9 @@ public class Instruction {
 	
 	// not totally sure what this does, i guess we will see. i think it returns the instruction in hex or something
 	public String getBinHex() {
-		StringBuilder buff = new StringBuilder("00000000");
+		//StringBuilder buff = new StringBuilder("00000000"); //this is the line that you put in, Jake
+		//but the directions said to put in the length of "00000000" - 8, so I changed that ~Junhson
+		StringBuilder buff = new StringBuilder("00000000".length()-8);
 		buff.append(Integer.toString(opcode,2));
 		buff.append("  ");
 		buff.append(Integer.toHexString(arg));
