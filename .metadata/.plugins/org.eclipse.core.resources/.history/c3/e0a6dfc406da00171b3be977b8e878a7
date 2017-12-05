@@ -14,7 +14,7 @@ import project.Memory;
 
 public class ViewMediator extends Observable {
 	
-	private MachineModel model; //some small change for another repo push
+	private MachineModel model;
 	private JFrame frame;
 	StepControl stepControl;
 	CodeViewPanel codeViewPanel;
