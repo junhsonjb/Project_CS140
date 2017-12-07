@@ -337,8 +337,15 @@ public class MachineModel {
 	// organizing method
 	// calls the 2 clear methods in memory and sets the fields of cpu to 0
 	public void clear() {
+		for (int i = 0; i < getProgramSize(); i++) {
+			System.out.println(getCode(i));
+		}
+		System.out.println();
 		memory.clearData();
 		memory.clearCode();
+		for (int i = 0; i < getProgramSize(); i++) {
+			System.out.println(getCode(i));
+		}
 		cpu.accum = 0;
 		cpu.pc = 0;
 	}

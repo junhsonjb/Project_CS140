@@ -133,7 +133,6 @@ public class ViewMediator extends Observable {
 		currentState.enter();
 		setChanged();
 		notifyObservers(s);
-		model.setProgramSize(0);
 	}
 
 	public void execute() {
@@ -265,12 +264,11 @@ public class ViewMediator extends Observable {
 	
 	public void clear() {
 		model.clear();
-		model.setProgramSize(0);
 		setCurrentState(States.NOTHING_LOADED);
 		currentState.enter();
 		setChanged();
 		notifyObservers("Clear");
-		System.out.println(model.getCode()[3]);
+		model.setProgramSize(0);
 	}
 	
 	
