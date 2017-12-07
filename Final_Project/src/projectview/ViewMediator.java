@@ -16,6 +16,7 @@ import project.IllegalInstructionException;
 import project.MachineModel;
 import project.Memory;
 import project.ParityCheckException;
+import project.CodeAccessException;
 
 public class ViewMediator extends Observable {
 	
@@ -48,11 +49,11 @@ public class ViewMediator extends Observable {
 	}
 	
 	public void step() { 
-		if (currentState != States.PROGRAM_HALTED && 
+		while (currentState != States.PROGRAM_HALTED && 
 				currentState != States.NOTHING_LOADED) {
 			try {
 				model.step();
-			} /*catch (CodeAccessException e) {
+			} catch (CodeAccessException e) {
 				JOptionPane.showMessageDialog(frame, 
 					"Illegal access to code from line " + model.getPC() + "\n"
 							+ "Exception message: " + e.getMessage(),
@@ -60,7 +61,95 @@ public class ViewMediator extends Observable {
 							JOptionPane.OK_OPTION);
 				System.out.println("Illegal access to code from line " + model.getPC()); // just for debugging
 				System.out.println("Exception message: " + e.getMessage());			
-			} */catch(ArrayIndexOutOfBoundsException e) {
+			} catch(ArrayIndexOutOfBoundsException e) {
+				JOptionPane.showMessageDialog(frame, 
+						"Array index out of bounds from line " + model.getPC() + "\n"
+								+ "Exception message: " + e.getMessage(),
+								"Run time error",
+								JOptionPane.OK_OPTION);
+					System.out.println("Array index out of bounds from line " + model.getPC()); // just for debugging
+					System.out.println("Exception message: " + e.getMessage());	
+			} catch(NullPointerException e) {
+				JOptionPane.showMessageDialog(frame, 
+						"Null pointer exception from line " + model.getPC() + "\n"
+								+ "Exception message: " + e.getMessage(),
+								"Run time error",
+								JOptionPane.OK_OPTION);
+					System.out.println("Null pointer exception from line " + model.getPC()); // just for debugging
+					System.out.println("Exception message: " + e.getMessage());
+			} catch(ParityCheckException e) {
+				JOptionPane.showMessageDialog(frame, 
+						"Parity check exception from line " + model.getPC() + "\n"
+								+ "Exception message: " + e.getMessage(),
+								"Run time error",
+								JOptionPane.OK_OPTION);
+					System.out.println("Parity check exception from line " + model.getPC()); // just for debugging
+					System.out.println("Exception message: " + e.getMessage());
+			} catch(IllegalInstructionException e) {
+				JOptionPane.showMessageDialog(frame, 
+						"Illegal instruction from line " + model.getPC() + "\n"
+								+ "Exception message: " + e.getMessage(),
+								"Run time error",
+								JOptionPane.OK_OPTION);
+					System.out.println("Illegal instruction from line " + model.getPC()); // just for debugging
+					System.out.println("Exception message: " + e.getMessage());
+			} catch(IllegalArgumentException e) {
+				JOptionPane.showMessageDialog(frame, 
+						"Illegal argument from line " + model.getPC() + "\n"
+								+ "Exception message: " + e.getMessage(),
+								"Run time error",
+								JOptionPane.OK_OPTION);
+					System.out.println("Illegal argument from line " + model.getPC()); // just for debugging
+					System.out.println("Exception message: " + e.getMessage());
+			} catch(DivideByZeroException e) {
+				JOptionPane.showMessageDialog(frame, 
+						"Divided by zero on line " + model.getPC() + "\n"
+								+ "Exception message: " + e.getMessage(),
+								"Run time error",
+								JOptionPane.OK_OPTION);
+					System.out.println("Divided by zero on line " + model.getPC()); // just for debugging
+					System.out.println("Exception message: " + e.getMessage());
+			}
+			setChanged();
+			notifyObservers();
+		}
+	}
+	
+	public MachineModel getModel() {
+		return model;
+	}
+	
+	public void setModel(MachineModel model) {
+		this.model = model;
+	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
+	
+	public void makeReady(String s) {
+		stepControl.setAutoStepOn(false);
+		setCurrentState(States.PROGRAM_LOADED_NOT_AUTOSTEPPING);
+		currentState.enter();
+		setChanged();
+		notifyObservers(s);
+		model.setProgramSize(0);
+	}
+
+	public void execute() {
+		while (currentState != States.PROGRAM_HALTED && 
+				currentState != States.NOTHING_LOADED) {
+			try {
+				model.step();
+			} catch (CodeAccessException e) {
+				JOptionPane.showMessageDialog(frame, 
+					"Illegal access to code from line " + model.getPC() + "\n"
+							+ "Exception message: " + e.getMessage(),
+							"Run time error",
+							JOptionPane.OK_OPTION);
+				System.out.println("Illegal access to code from line " + model.getPC()); // just for debugging
+				System.out.println("Exception message: " + e.getMessage());			
+			} catch(ArrayIndexOutOfBoundsException e) {
 				JOptionPane.showMessageDialog(frame, 
 						"Array index out of bounds from line " + model.getPC() + "\n"
 								+ "Exception message: " + e.getMessage(),
@@ -113,29 +202,6 @@ public class ViewMediator extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-	
-	public MachineModel getModel() {
-		return model;
-	}
-	
-	public void setModel(MachineModel model) {
-		this.model = model;
-	}
-	
-	public JFrame getFrame() {
-		return frame;
-	}
-	
-	public void makeReady(String s) {
-		stepControl.setAutoStepOn(false);
-		setCurrentState(States.PROGRAM_LOADED_NOT_AUTOSTEPPING);
-		currentState.enter();
-		setChanged();
-		notifyObservers(s);
-		model.setProgramSize(0);
-	}
-
-	public void execute() {}
 
 	public void assembleFile() {
 		filesMgr.assembleFile();
@@ -199,11 +265,12 @@ public class ViewMediator extends Observable {
 	
 	public void clear() {
 		model.clear();
+		model.setProgramSize(0);
 		setCurrentState(States.NOTHING_LOADED);
 		currentState.enter();
 		setChanged();
 		notifyObservers("Clear");
-		model.setProgramSize(0);
+		System.out.println(model.getCode()[3]);
 	}
 	
 	

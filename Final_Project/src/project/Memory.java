@@ -26,8 +26,8 @@ public class Memory {
 	}
 	
 	void clearData() {
-		for (int x : this.data) {
-			x = 0;
+		for(int i = 0; i < DATA_SIZE; i++) {
+			data[i] = 0;
 		}
 		changedDataIndex = -1;
 	}
@@ -58,8 +58,7 @@ public class Memory {
 	
 	// NEW - return the value stored in code at index 
 	Instruction getCode(int index) {
-		// this line is for future use as instructed by piazza
-		//if(index < 0 || index >= CODE_SIZE) throw new CodeAccessException("Illegal access to code");
+		if(index < 0 || index >= CODE_SIZE) throw new CodeAccessException("Illegal access to code");
 		return this.code[index];
 	}
 	
@@ -71,7 +70,9 @@ public class Memory {
 	
 	// NEW - sets every position in code to null << CORRECTION << (DOES NOTE set programSize to -1)
 	void clearCode() {
-		for (int i = 0; i < code.length; i++) code[i] = null;
+		for(int i = 0; i < CODE_SIZE; i++) {
+			code[i] = null;
+		} 
 	}
 	
 	// NEW - setter method for programSize << CORRECTION << 
