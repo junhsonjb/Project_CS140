@@ -49,7 +49,7 @@ public class ViewMediator extends Observable {
 	}
 	
 	public void step() { 
-		while (currentState != States.PROGRAM_HALTED && 
+		if (currentState != States.PROGRAM_HALTED && 
 				currentState != States.NOTHING_LOADED) {
 			try {
 				model.step();
